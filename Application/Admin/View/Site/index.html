@@ -1,0 +1,169 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					{$other_action}
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" id="idForm">
+						<ul class="nav nav-tabs">
+						    <li class="active"><a href="#menu1" data-toggle="tab">基本设置</a></li>
+						    <li><a href="#menu2" data-toggle="tab">SEO设置</a></li>
+							<li><a href="#menu3" data-toggle="tab">图片设置</a></li>
+							<li><a href="#menu4" data-toggle="tab">邮件设置</a></li>
+						</ul>
+
+                    	<div class="tab-content">
+                	    	<div id="menu1" class="tab-pane fade in active">
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 站点名称</label>
+									<div class="col-sm-10">
+										<input type="text" name="WEB_NAME" value="{$settings.WEB_NAME}" nullmsg="请填写站点名称" datatype="*0-50" errormsg="字数不能超过50个字" class="form-control" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 站点英文名称</label>
+									<div class="col-sm-10">
+										<input type="text" name="WEB_ENNAME" value="{$settings.WEB_ENNAME}" nullmsg="请填写站点英文名称" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="多个之间用下划线‘ _ ’隔开"></span> 默认搜索词
+									</label>
+									<div class="col-sm-10">
+										<input type="text" name="SEARCH_WORD" value="{$settings.SEARCH_WORD}" nullmsg="请填写默认搜索词" datatype="*0-50" errormsg="字数不能超过50个字" class="form-control" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 网站备案号</label>
+									<div class="col-sm-10">
+										<input type="text" name="WEB_COPYRIGHT" value="{$settings.WEB_COPYRIGHT}" nullmsg="请填写网站备案号" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+									</div>
+								</div>
+							</div>
+                	    	<div id="menu2" class="tab-pane fade">
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 站点关键字</label>
+									<div class="col-sm-10">
+										<input type="text" name="META_KEYWORD" value="{$settings.META_KEYWORD}" nullmsg="请填写站点关键字" datatype="*0-50" class="form-control" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 站点描述</label>
+									<div class="col-sm-10">
+										<textarea type="text" name="META_DESCRIPTION" value="{$settings.META_DESCRIPTION}" nullmsg="请填写站点描述" datatype="*0-50" class="form-control" placeholder=""></textarea>
+									</div>
+								</div>
+							</div>
+                	    	<div id="menu3" class="tab-pane fade">
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> QQ二维码</label>
+									<div class="col-sm-10 thumbnails">
+										<div class="row thumbnails-list">
+											<if condition="$settings['QQ_IMAGE']">
+												<img src="{$settings['QQ_IMAGE']}" alt="{$settings['QQ_IMAGE_ALT']}">
+											</if>
+										</div>
+										<div class="row">
+											<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="" data-title-name="QQ_IMAGE_ALT" data-name="QQ_IMAGE" data-max-upload="1">上传</a>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> 微信二维码</label>
+									<div class="col-sm-10 thumbnails">
+										<div class="row thumbnails-list">
+											<if condition="$settings['WEIXIN_IMAGE']">
+												<img src="{$settings['WEIXIN_IMAGE']}" alt="{$settings['WEIXIN_IMAGE_ALT']}">
+											</if>
+										</div>
+										<div class="row">
+											<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="" data-title-name="WEIXIN_IMAGE_ALT" data-name="WEIXIN_IMAGE" data-max-upload="1">上传</a>
+										</div>
+									</div>
+								</div>
+							</div>
+                	    	<div id="menu4" class="tab-pane fade">
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 邮箱服务器</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="text" name="SMTP_HOST" value="{$settings.SMTP_HOST}" nullmsg="请填写邮箱服务器" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+                	    			</div>
+                	    		</div>
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 服务器端口</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="text" name="SMTP_PORT" value="{$settings.SMTP_PORT}" nullmsg="请填写服务器端口" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+                	    			</div>
+                	    		</div>
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 发件人邮箱</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="text" name="SMTP_USER" value="{$settings.SMTP_USER}" nullmsg="请填写服务器账号" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+                	    			</div>
+                	    		</div>
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 发件人密码</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="password" name="SMTP_PASS" value="{$settings.SMTP_PASS}" nullmsg="请填写服务器密码" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+                	    			</div>
+                	    		</div>
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 发件人名称</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="test" name="FROM_NAME" value="{$settings.FROM_NAME}" nullmsg="请填写发件人名称" datatype="*0-100" errormsg="字数不能超过100个字" class="form-control" placeholder="">
+                	    			</div>
+                	    		</div>
+                	    		<div class="form-group">
+                	    			<label class="col-sm-2 control-label"> 管理员邮箱</label>
+                	    			<div class="col-sm-10">
+                	    				<input type="text" name="WEB_MAIL" value="{$settings.WEB_MAIL}" nullmsg="请填写管理员邮箱" datatype="e" errormsg="邮箱格式不对" class="form-control" placeholder="" ignore style="width:692px;display:inline-block">
+                	    				<button class="btn btn-primary" id="mail_test">测试</button>
+                	    			</div>
+                	    		</div>
+							</div>
+                    	</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary ajax-post is-validform" data-url="{:U('index')}" data-location="{:U('index')}" data-location-title="返回站点设置">保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/statics/layer/layer.js"></script>
+<script>
+  $(function () {
+    $('#mail_test').click(function(){
+    	$('#idForm').submit(function(){
+    		return false;
+    	});
+    	var email = $(this).siblings('input').val();
+    	if (email) {
+    		$.ajax({
+			    url: "{:U('Site/mailTest')}",
+                type: 'post',
+                data: {'email': email},
+                dataType: 'json',
+                success:function(msg){
+                	layer.msg(msg.msg);
+                	// ajaxResultDo(msg, '');
+	            }
+			});
+			return false;
+    	} else {
+            layer.msg('管理员邮箱为空！');
+    		return false;
+    	}
+    });
+  });
+</script>

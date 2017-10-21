@@ -1,0 +1,38 @@
+
+    <div class="cover-box" id="allmap">
+    </div>
+    <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="__PUBLIC__/index/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="__PUBLIC__/index/assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="__PUBLIC__/index/assets/js/amazeui.min.js"></script>
+    <script>
+    $(window).resize(function() {
+        var h1 = $(window).height();
+        $(".cover-box").height(h1);
+    });
+
+
+    $(function() {
+        var h1 = $(window).height();
+        $(".cover-box").height(h1);
+
+    });
+    </script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lWDwoRS0Vln6Y8fV3Kivk4SqlVGqZz17"></script>
+    <script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(117.110838, 30.52621), 16);
+    map.enableScrollWheelZoom(true);
+
+    var icon = new BMap.Icon('images/d9s.png', new BMap.Size(20, 30), { anchor: new BMap.Size(0, 0) });
+    var mkr = new BMap.Marker(new BMap.Point(117.1107, 30.52588), { icon: icon });
+    var mkr2 = new BMap.Marker(new BMap.Point(117.1102, 30.525), { icon: icon });
+    map.addOverlay(mkr);
+    map.addOverlay(mkr2);
+    </script>
+

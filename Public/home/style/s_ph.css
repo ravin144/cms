@@ -1,0 +1,111 @@
+@media (min-width: 768px) and (max-width: 979px){
+	.touxk{
+		    height: 166%;
+		    top: -90%;
+	}
+	.index1_content_touxiang{
+		height: 121px;
+	}
+	.touxiangcenter .touxdesc{
+	    border-radius: 35px;
+	    font-size: 1.8rem;
+   		bottom: -24%;
+   		height: 40px;
+  		line-height: 40px;
+	}
+	.touxiang_leftimg,.touxiang_rightimg{
+		width: 20%;
+	}
+	.index1_content_touxiang{
+		    margin-top: 100px;
+	}
+	.index1_main{
+		padding-bottom: 46px;
+	}
+	.footer{
+		    padding-top: 85px;
+		    padding-bottom: 21px;
+		    width: 101%;
+	}
+	.frcp>span{
+		font-size: 24px;
+	}
+	.frcp>span>img{
+		width: 35px;
+	}
+	.frfenxiang>a{
+		font-size: 21px;
+	}
+	.frfenxiang{
+		width: 55%;
+		    top: -20px;
+	}
+	.ix1yscontentp{
+		    padding: 20px 0;
+	}
+	.ix1yscontent{
+		padding: 30px 20px;
+	}
+	
+}
+@media (max-width: 380px){
+	.index1_content_touxiang{
+		height: 94px;
+	}
+
+	
+}
+
+
+@media (max-width: 360px){
+	.index1_content_touxiang{
+		height: 94px;
+	}
+
+	.ix1yscontenth1{
+		font-size: 14px;
+	}
+	.ix1yscontenth2{
+		    padding: 0 43px;
+		    font-size: 23px;
+	}
+	.ix1yscontentp{
+		    font-size: 14px;
+	}
+	.rili{
+		padding: 10px 15px;
+	}
+}
+@media (max-width: 320px){
+	.touxiangcenter .touxdesc{
+		font-size: 1.2rem;
+	}
+	.index1_content_touxiang{
+		    height: 77px;
+	}
+	.ix1yscontenth1{
+		font-size: 14px;
+	}
+	.ix1yscontenth2{
+		    padding: 0 29px;
+		    font-size: 23px;
+	}
+	.ix1yscontentp{
+		    font-size: 14px;
+	}
+	.rili{
+		padding: 8px 15px;
+	}
+	.touxiangcenter .touxdesc{
+		    bottom: -22%;
+		         height: 26px; 
+   	 line-height: 26px;
+	}
+	.rili_yue{
+		font-size: 36px;
+		    line-height: 100%
+	}
+	.frfenxiang{
+		    line-height: 46px;
+	}
+}

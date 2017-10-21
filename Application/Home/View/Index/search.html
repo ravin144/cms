@@ -1,0 +1,30 @@
+
+    <div class="common-box news-box">
+        <form class="search-box" action="{:U('Index/search')}" method="get">
+            <input type="text" placeholder="新闻搜索" name="keyword" />
+            <input type="hidden" name="table_name" value="content_article_news" />
+            <input type="text" name="page_num" value="9" />
+            <input type="text" name="tpl" value="search" />
+            <input type="submit" class="but" value="" />
+        </form>
+        <div class="clear"></div>
+        <ul class="news-list am-avg-sm-1 am-avg-md-2 am-avg-lg-3">
+            <empty name="list">
+                <h3 style="text-align: center;margin:18vh auto;font-size:24px;">暂无搜索结果</h3>
+            </empty>
+        	<volist name="list" id="vo" key="k">
+	            <li><a href="{$vo.url}">
+			    <img class="pic" src="{$vo.img}">
+			    <dl>
+			       <dt>{$vo.title}</dt>
+				   <dd class="info">{$vo.description}</dd>
+				   <dd class="time">{$vo.add_time|date="Y-m-d", ###}</dd>
+				</dl>
+			  </a></li>
+        	</volist>
+        </ul>
+        <notempty name="list">
+            {$page}
+        </notempty>
+    </div>
+

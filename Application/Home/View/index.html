@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title><if condition="$seo_title">{$seo_title}<else/>{:C('WEB_NAME')}</if></title>
+    <meta name="keywords" content="<if condition='$seo_keyword'>{$seo_keyword}<else/>{:C('META_KEYWORD')}</if>">
+    <meta name="description" content="<if condition='$seo_description'>{$seo_description}<else/>{:C('META_DESCRIPTION')}</if>">
+    <link rel="stylesheet" href="__PUBLIC__/index/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/index/assets/dist/amazeui.swiper.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/index/style/animate.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/index/style/all.css" />
+</head>
+<body>
+    <header class="m-hd <?php if(ACTION_NAME != 'index') echo 'paging-hd'; ?>">
+        <section class="am-show-md-up">
+            <div class="top-nav">
+                <a href="http://demo.do-can.com/meihaojiayuan/index.html" rel="nofollow" class="m-logo"><img src="__PUBLIC__/index/images/logo.png"/></a>
+                <a class="search" href="#"></a>
+                <nav>
+                    <ul class="am-nav am-nav-pills ">
+                        <li class="<?php if(ACTION_NAME == 'index') echo 'am-active'; ?>"><a href="__ROOT__/">首页</a></li>
+                        <volist name=":subcat()" id="vo" key="k">
+                            <li class="<?php if($vo['id'] == $cid || ($pid == 7 & $k == 2)) echo 'am-active'; ?>"><a href="{$vo.url}">{$vo.name}</a></li>
+                        </volist>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <nav data-am-widget="header" class="am-header am-show-sm-only">
+            <div class="am-header-left am-header-nav">
+                <a href="__ROOT__/" rel="nofollow">
+          <i class="am-header-icon am-icon-home"></i> 首页
+        </a>
+            </div>
+            <h1 class="am-header-title">
+        <a href="__ROOT__/" rel="nofollow">美好家园</a>
+      </h1>
+            <div class="am-header-right am-header-nav">
+                <a href="#right-link" class="" data-am-offcanvas="{target: '#r-nav'}">
+          <i class="am-header-icon am-icon-bars"></i> 菜单
+        </a>
+            </div>
+        </nav>
+        <!-- 侧边栏内容 -->
+        <div id="r-nav" class="am-offcanvas">
+            <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                <nav class="am-offcanvas-content">
+                    <a href="__ROOT__/" rel="nofollow"><span class="logo"><img src="__PUBLIC__/index/images/logo.png"/></span></a>
+                    <div class="<?php if(ACTION_NAME == 'index') echo 'am-active'; ?>"><a href="__ROOT__/" rel="nofollow">首页</a></div>
+                    <volist name=":subcat()" id="vo" key="k">
+                        <div class="<?php if(ACTION_NAME == 'index') echo 'am-active'; ?>"><a href="{$vo.url}" rel="nofollow">{$vo.name}</a></div>
+                    </volist>
+                </nav>
+            </div>
+        </div>
+    </header>
+    {__CONTENT__}
+    <footer class="footer">
+        <div class="box">
+            <ul class="link">
+                <volist name=":get_cate_list(1, 1)" id="vo" key="k">
+                    <li class="io1">{$vo.phone}</li>
+                    <li class="io2">{$vo.address}</li>
+                </volist>
+            </ul>
+            <div class="c-2wh"><img src="{:C('WEIXIN_IMAGE')}" /></div>
+        </div>
+        <div class="clear"></div>
+        <div class="txtall">
+            <div class="tbox">{:C('WEB_COPYRIGHT')}</div>
+        </div>
+    </footer>
+    <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="__PUBLIC__/index/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="__PUBLIC__/index/assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="__PUBLIC__/index/assets/js/amazeui.min.js"></script>
+    <script src="__PUBLIC__/index/assets/js/store.common.js"></script>
+    <script language="javascript" src="__PUBLIC__/index/assets/dist/amazeui.swiper.min.js"></script>
+    <script src="__PUBLIC__/index/assets/js/swiper.animate.min.js"></script>
+    <script language="javascript">
+    $(function() {
+        var mySwiper = new Swiper('#mySwiper', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 'auto',
+            autoplay: 4000,
+            onInit: function(swiper) { //Swiper2.x的初始化是onFirstInit
+                swiperAnimateCache(swiper); //隐藏动画元素
+                swiperAnimate(swiper); //初始化完成开始动画
+            },
+            onSlideChangeEnd: function(swiper) {
+                swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+            }
+        });
+    });
+    </script>
+</body>
+</html>

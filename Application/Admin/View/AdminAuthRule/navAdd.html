@@ -1,0 +1,90 @@
+	<div id="main">
+		<ol class="breadcrumb">
+		  <li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+		</ol>
+		
+		<div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                         {$other_action}
+                    </div>
+                    <div class="panel-body">
+                    	<form class="form-horizontal">
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="主要用于后台显示"></span>
+						    	菜单名称(必填)
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="title" datatype="*1-20" nullmsg="请填写菜单名称" errormsg="字数不能超过20个字" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="例如:Admin/Index/main,顶级菜单和左侧一级菜单可以不用填写"></span>
+						    	模块名/控制器名/操作名
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="name" name="name" nullmsg="请填写模块名/控制器名/操作名" errormsg="字数不能超出100个" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	上级菜单
+						    </label>
+						    <div class="col-sm-10">
+						      <select class="form-control" name="pid">
+								 <option value="0">顶级菜单</option>
+								 {$admin_nav}
+							  </select>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="例如:{score}>200 and {score}<300 表示积分在200-300之间有此权限,若无特殊需求留空即可"></span>
+						    	权限条件
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="condition" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	是否禁用
+						    </label>
+						    <div class="col-sm-10">
+								<label class="radio-inline">
+								  <input type="radio" name="status" value="0"> 是
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="status" value="1" checked> 否
+								</label>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="有些右侧不需要自动显示的菜单，比如:删除,更新,排序等需要手动添加的菜单"></span>
+						    	是否显示
+						    </label>
+						    <div class="col-sm-10">
+								<label class="radio-inline">
+								  <input type="radio" name="is_show" value="1" checked> 是
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="is_show" value="0"> 否
+								</label>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary ajax-post is-validform" data-url="{:U('navAdd')}" data-location="{:U('nav')}" data-location-title="返回菜单列表">保存</button>
+						    </div>
+						  </div>
+						</form>
+                    </div>
+                 </div>
+              </div>
+         </div>
+	</div>

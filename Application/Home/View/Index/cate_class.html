@@ -1,0 +1,35 @@
+
+    <div class="common-box class-box">
+        <div class="tool">
+            <div class="type-txt">
+                <div class="tit">垃圾类别：</div>
+                <ul>
+                	<volist name=":subcat($pid)" id="vo" key="k">
+                    	<li class="<?php if($vo['id'] == $cid) echo 'hover'; ?>"><a href="{$vo.url}">{$vo.name}</a></li>
+                	</volist>
+                </ul>
+            </div>
+            <form class="search-box" action="{:U('Index/search')}">
+                <input type="text" placeholder="攻略搜索" name="keyword" />
+                <input type="hidden" name="table_name" value="content_article_class" />
+                <input type="text" name="page_num" value="12" />
+                <input type="text" name="tpl" value="searclass" />
+                <input type="submit" class="but" value="" />
+            </form>
+        </div>
+        <ul class="class-list am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
+        	<php>$class_name = $cates['name'];</php>
+            <volist name="list" id="vo" key="k">
+	            <li><a href="{$vo.url}">
+			    <span class="pic" style="background-image:url({$vo.img})"></span>
+			    <p class="dt">{$vo.title}</p>
+			    <p class="dd">{$class_name}</p>
+			    <p class="info">{$vo.desc}</p>
+			  </a></li>
+            </volist>
+        </ul>
+        <notempty name="list">
+            {$page}
+        </notempty>
+    </div>
+

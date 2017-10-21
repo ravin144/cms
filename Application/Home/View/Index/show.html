@@ -1,0 +1,29 @@
+<div class="w1200">
+	<div style="height: 10vh;"></div>
+	<h1>{$data.title}</h1>
+	<div class="content">
+		{$data.content|htmlspecialchars_decode}
+	</div>
+</div>
+<style type="text/css">
+	.w1200 {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.w1200 h1 {
+		font-size: 20px;
+		font-weight: bold;
+		color: #2c9423;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+	.w1200 .content p {
+		font-size: 14px;
+		line-height: 1.5;
+		color: #333;
+	}
+	.w1200 .content img {
+		max-width: 100%;
+	}
+</style>

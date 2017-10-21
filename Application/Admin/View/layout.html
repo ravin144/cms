@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<title>后台管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script>
+    
+    <link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    //ueditor 文件上传等服务器端请求接口
+    var UEDITOR_SERVER_URL = '__ROOT__/Admin/Upload/index',ACTION_NAME='{$Think.ACTION_NAME}';
+    </script>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <meta name=”renderer”content="e-comp">
+    <![endif]-->
+  </head>
+	
+  <body>
+	{__CONTENT__}
+	 <!-- 时间选择插件 -->
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/statics/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <!-- 编辑器配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/statics/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/statics/ueditor/ueditor.all.min.js"></script>
+    <!-- 表单验证插件 -->
+    <script type="text/javascript" src="__PUBLIC__/statics/js/Validform_v5.3.2_min.js"></script>
+    <!-- js模板引擎插件 -->
+    <script type="text/javascript" src="__PUBLIC__/statics/js/artTemplate.js"></script>
+    <!-- 后台公共js文件 -->
+    <script type="text/javascript" src="__PUBLIC__/admin/js/common.js"></script>
+    <!-- 上传文件和图片必须的 -->
+  	<script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+  	<script type="text/javascript" src="__PUBLIC__/admin/js/upload.js"></script>
+    <!-- 裁切插件 -->
+    <script type="text/javascript" src="__PUBLIC__/admin/js/jquery.Jcrop.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/admin/js/jquery.Jcrop.css"/>
+    <script type="text/javascript">
+    var cut_img_url="{:U('Upload/cutImg')}",
+    	get_country_state_url="__ROOT__/index.php/Api/Index/getCountryAndCity",
+    	prev_url="{$Think.SERVER.HTTP_REFERER}";
+    </script>
+    <!-- 裁切窗口 -->
+    <div class="modal fade modal-crop-img" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	       <h4 class="modal-title" id="myModalLabel">裁切图片</h4>
+	      </div>
+	      <div class="modal-body content">
+		     <div class="crop_box"><img src=""/></div>
+		  </div>
+		  <div class="modal-footer">
+		     宽: <input type="text" class="form-control input-sm" name="width" disabled/>
+    		 高: <input type="text" class="form-control input-sm" name="height" disabled/>
+    		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <button type="button" class="btn btn-default btn-sm crop">裁切</button>
+	         <button type="button" class="btn btn-default btn-sm cancle">取消裁切</button>
+	         <button type="button" class="btn btn-default btn-sm ok">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 错误正确提示窗口 -->
+	<div class="modal fade modal-alert" tabindex="-1" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	       <h4 class="modal-title" id="myModalLabel">提示</h4>
+	      </div>
+	      <div class="modal-body">
+		     <div class="alert-status loading">
+				<div class="status">Loading...</div>
+		      	<div class="alert-msg">正在提交数据请稍后...</div>
+		     </div>
+		     <div class="alert-status success">
+				<div class="status glyphicon glyphicon-ok"></div>
+		      	<div class="alert-msg">提交成功</div>
+		     </div>
+		     <div class="alert-status error">
+				<div class="status glyphicon glyphicon-remove"></div>
+		      	<div class="alert-msg">提交失败请重试</div>
+		     </div>
+		   </div>
+		   <div class="modal-footer">
+		   	 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
+		   	 <a class="btn btn-primary btn-sm callback-location" href="">&nbsp;</a>
+	         <a class="btn btn-primary btn-sm" href="{$Think.SERVER.HTTP_REFERER}">返回上一页</a>
+	       </div>
+	    </div>
+	  </div>
+	</div>
+  </body>
+</html>

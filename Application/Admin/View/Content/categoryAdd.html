@@ -1,0 +1,201 @@
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">{$other_action}</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 栏目类型</label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									<input type="radio" id="t0" name="type" value="0" {$_GET['type'] == 0 ? 'checked' : ''} > 栏目页
+								</label>
+								<label class="radio-inline">
+									<input type="radio" id="t1" name="type" value="1" {$_GET['type'] == 1 ? 'checked' : ''} > 单页
+								</label>
+								<label class="radio-inline">
+									<input type="radio" id="t2" name="type" value="2" {$_GET['type'] == 2 ? 'checked' : ''} > 链接页
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="栏目名称在1-100位"></span> 栏目名称
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="name" datatype="*1-100" nullmsg="请填写栏目名称" errormsg="栏目名称在1-100位" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="主要用于前台显示需要"></span> 英文名称
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="enname" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 上级栏目</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="pid">
+									<option value="0">顶级栏目</option> {$cate_str}
+								</select>
+							</div>
+						</div>
+						<div class="form-group cate">
+							<label class="col-sm-2 control-label"> 所属模型</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="model_id">
+									<foreach name="model_list" item="vo" key="key">
+										<option value="{$vo.id}" {$parentData['model_id'] ==  $vo['id'] ? 'selected' : ''}>{$vo.model_name}</option>
+									</foreach>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 栏目图片</label>
+							<div class="col-sm-10 thumbnails">
+								<div class="row thumbnails-list"></div>
+								<div class="row">
+									<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="" data-title-name="alt" data-name="image" data-max-upload="1">上传</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="栏目的简短描述"></span> 栏目描述
+							</label>
+							<div class="col-sm-10">
+								<textarea name="description" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="form-group cate">
+							<label class="col-sm-2 control-label">
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="默认9篇为一页"></span> 栏目分页
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="page_num" class="form-control" placeholder="9">
+							</div>
+						</div>
+						<div class="form-group cate page">
+							<label class="col-sm-2 control-label"> 栏目路由</label>
+							<div class="col-sm-10">
+								<input type="text" name="route" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group link">
+							<label class="col-sm-2 control-label">
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="如果填写链接地址，请加上http://的完整链接"></span> 栏目链接
+							</label>
+							<div class="col-sm-10 url-input">
+								<input type="text" name="url" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group cate">
+							<label class="col-sm-2 control-label"> 栏目页模板</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="cate_tpl">
+									<foreach name="filearr.cate" item="attr" key="key">
+										<option value="{$attr}">{$attr}</option>
+									</foreach>
+								</select>
+							</div>
+						</div>
+						<div class="form-group page">
+							<label class="col-sm-2 control-label"> 单页模板</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="page_tpl">
+									<foreach name="filearr.page" item="attr" key="key">
+										<option value="{$attr}">{$attr}</option>
+									</foreach>
+								</select>
+							</div>
+						</div>
+						<div class="form-group cate">
+							<label class="col-sm-2 control-label"> 内容页模板</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="show_tpl">
+									<foreach name="filearr.show" item="attr" key="key">
+										<option value="{$attr}">{$attr}</option>
+									</foreach>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 是否显示</label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									<input type="radio" name="is_show" value="1" checked> 是
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="is_show" value="0"> 否
+								</label>
+							</div>
+						</div>
+						<div class="form-group cate page">
+							<label class="col-sm-2 control-label"> SEO标题</label>
+							<div class="col-sm-10">
+								<input type="text" name="seo_title" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group cate page">
+							<label class="col-sm-2 control-label"> SEO关键字</label>
+							<div class="col-sm-10">
+								<input type="text" name="seo_keyword" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group cate page">
+							<label class="col-sm-2 control-label"> SEO描述</label>
+							<div class="col-sm-10">
+								<textarea name="seo_description" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary ajax-post is-validform" data-url="{:U('Content/categoryAdd')}" data-location="{:U('category')}" data-location-title="返回文章分类">保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- type值 => 不同type的div的显示或隐藏 -->
+<script>
+	$(function() {
+		showDiv();
+		$(":radio[name='type']").change(function(){
+			showDiv();
+		});
+	});
+	function showDiv() {
+		$('.cate').css("display","none");
+		$('.page').css("display","none");
+		$('.link').css("display","none");
+
+		$('.url-input input').removeAttr('datatype nullmsg errormsg');
+
+		switch ($("input[name=type]:checked").attr("id")) {
+			case "t0":
+			$('.cate').css("display","block");
+			break;
+			case "t1":
+			$('.page').css("display","block");
+			break;
+			case "t2":
+			$('.link').css("display","block");
+			$('.url-input input').attr({
+				'datatype' : "/^http:\/\//",
+				'nullmsg' : "请填写栏目链接",
+				'errormsg' : "链接格式不正确"
+			});
+			break;
+			default: break;
+		}
+	}
+</script>

@@ -1,0 +1,66 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					{$other_action}
+					<div class="table-filter">
+                       	<form class="form-inline" method="get" action="{:U('')}">
+                       		<input type="text" name="user_name" value="{$Think.get.user_name}" class="form-control input-sm" placeholder="请输入管理员名称或名称关键字">
+						  	<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span>搜索</button>
+						</form>
+                    </div>
+				</div>
+				<form>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="50">ID</th>
+										<th width="100">登录名</th>
+										<th>所属管理组</th>
+										<th>登录次数</th>
+										<th>最后登录ip</th>
+										<th>最后登录时间</th>
+										<th>加入时间</th>
+										<th width="300">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+									<tr>
+										<td>{$vo.id}</td>
+										<td>{$vo.user_name}</td>
+										<td><a href="{:U('',array('group_id'=>$vo['group_id']))}">{$vo.group_name}</a></td>
+										<td>{$vo.login_count}</td>
+										<td>{$vo.last_login_ip}</td>
+										<td>{$vo.last_login_time|date='Y-m-d H:i',###}</td>
+										<td>{$vo.reg_time|date='Y-m-d H:i',###}</td>
+										<td>
+											<if condition="$vo['id'] eq 1">
+											&nbsp;&nbsp;总管理员不可编辑和删除
+											<else/>
+											<a href="{:U('update',array('id'=>$vo['id']))}">编辑</a>
+											<a href="" class="ajax-get" data-url="{:U('delete',array('id'=>$vo['id']))}" data-confirm="确定要删除此管理员吗？" data-location="reload">删除</a>
+											</if>
+										</td>
+									</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-heading">
+						共{:count($list)}条
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

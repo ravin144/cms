@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head style="background: #09192A;">
+	<meta charset="UTF-8" />
+	<title>后台管理面板</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+	<frameset rows="50px,*" border="0">
+		<frame src="{:U('Index/topNav')}"  noresize="true"/>
+		<frameset cols="180px,*" border="0">
+			<frame src="{:U('Index/sideBar')}" name='sidebar' noresize="true"/>
+			<frame src="{:U('Index/main')}" name='main' noresize="true"/>
+		</frameset>
+	</frameset><noframes></noframes>
+</html>

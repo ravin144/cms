@@ -1,0 +1,207 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">{$other_action}</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<input type="hidden" name="type" value="{$data.type}" />
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="栏目名称在1-100位"></span> 栏目名称
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="name" datatype="*1-100" value="{$data.name}" nullmsg="请填写栏目名称" errormsg="栏目名称在1-100位" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 
+								<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="主要用于前台显示需要"></span> 英文名称
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="enname" class="form-control" value="{$data.enname}" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 上级栏目</label>
+							<div class="col-sm-10">
+								<!-- onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;" -->
+								<select class="form-control" name="pid" disabled="disabled">
+									<option value="0" {$data['pid'] == 0 ? 'selected' : ''}>顶级栏目</option> {$cate_str}
+								</select>
+							</div>
+						</div>
+						<if condition="($data['type'] eq 0)">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 所属模型</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="model_id">
+										<foreach name="model_list" item="vo" key="key">
+											<option value="{$vo.id}" {$data['model_id'] == $vo['id'] ? 'selected' : ''}>{$vo.model_name}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+						</if>
+						<if condition="($data['type'] eq 0)">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 子栏目是否继承所属模型</label>
+								<div class="col-sm-10">
+									<label class="radio-inline"> 
+										<input type="radio" name="model_inherit" value="1"> 是
+									</label> 
+									<label class="radio-inline"> 
+										<input type="radio" name="model_inherit" value="0" checked='checked'> 否
+									</label>
+								</div>
+							</div>
+						</if>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> 栏目图片</label>
+							<div class="col-sm-10 thumbnails">
+								<div class="row thumbnails-list">
+									<if condition="$data['image']">
+										<img src="{$data['image']}" alt="{$data['alt']}">
+									</if>
+								</div>
+								<div class="row">
+									<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="" data-title-name="alt" data-name="image" data-max-upload="1">上传</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="栏目的简短描述"></span> 栏目描述
+							</label>
+							<div class="col-sm-10">
+								<textarea name="description" class="form-control">{$data.description}</textarea>
+							</div>
+						</div>
+						<if condition="($data['type'] eq 0)">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 
+									<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="默认9篇为一页"></span> 栏目分页
+								</label>
+								<div class="col-sm-10">
+									<input type="text" name="page_num" class="form-control" placeholder="9" value="{$data.page_num}">
+								</div>
+							</div>
+						</if>
+						<if condition="($data['type'] neq 2)">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 栏目路由</label>
+								<div class="col-sm-10">
+									<input type="text" name="route" class="form-control" placeholder="" value="{$data.route}">
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] eq 2">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 
+									<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="如果填写链接地址请填写加上http://的完整链接"></span> 栏目链接
+								</label> 
+								<div class="col-sm-10">
+									<input type="text" name="url" class="form-control" value="{$data.url}" placeholder="">
+								</div>
+							</div>
+						</if>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">是否显示 </label>
+							<div class="col-sm-10">
+								<label class="radio-inline"> 
+									<input type="radio" name="is_show" value="1" {$data['is_show'] == 1 ? 'checked' : ''}> 是
+								</label> 
+								<label class="radio-inline"> 
+									<input type="radio" name="is_show" value="0" {$data['is_show'] == 0 ? 'checked' : ''}> 否
+								</label>
+							</div>
+						</div>
+						<if condition="$data['type'] eq 0">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 栏目页模板</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="cate_tpl">
+										<foreach name="filearr.cate" item="attr" key="key">
+											<option value="{$attr}" {$attr == $data['cate_tpl'] ? 'selected' : ''}>{$attr}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] eq 1">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 单页模板</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="page_tpl">
+										<foreach name="filearr.page" item="attr" key="key">
+											<option value="{$attr}" {$attr == $data['page_tpl'] ? 'selected' : ''}>{$attr}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] eq 0">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 内容页模板</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="show_tpl">
+										<foreach name="filearr.show" item="attr" key="key">
+											<option value="{$attr}" {$attr == $data['show_tpl'] ? 'selected' : ''}>{$attr}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] neq 2">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> 子栏目是否继承模板</label>
+								<div class="col-sm-10">
+									<label class="radio-inline"> 
+										<input type="radio" name="tpl_inherit" value="1"> 是
+									</label> 
+									<label class="radio-inline"> 
+										<input type="radio" name="tpl_inherit" value="0" checked="checked" }> 否
+									</label>
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] neq 2">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> SEO标题</label>
+								<div class="col-sm-10">
+									<input type="text" name="seo_title" class="form-control" value="{$data.seo_title}" placeholder="">
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] neq 2">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> SEO描述</label>
+								<div class="col-sm-10">
+									<textarea name="seo_description" class="form-control">{$data.seo_description}</textarea>
+								</div>
+							</div>
+						</if>
+						<if condition="$data['type'] neq 2">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> SEO关键字</label>
+								<div class="col-sm-10">
+									<input type="text" name="seo_keyword" class="form-control" value="{$data.seo_keyword}" placeholder="">
+								</div>
+							</div>
+						</if>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary ajax-post is-validform" data-url="{:U('categoryUpdate',array('id' => I('id')))}" data-location="{:U('category')}" data-location-title="返回文章分类">保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li>修改个人信息</li>
+	</ol>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Advanced Tables -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					修改个人信息
+					<a href="javascript:history.go(-1);" class="btn btn-primary btn-xs">返回上一页</a>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+					  <input type="hidden" name="id" value="{$Think.get.id}"/>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">
+					    	管理员名
+					    </label>
+					    <div class="col-sm-10">
+					      <input type="text" name="user_name" value="{$data.user_name}" datatype="*1-50" nullmsg="请填写管理员名称" errormsg="字数不能超过50个字" class="form-control" placeholder="">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">
+					    	登录密码(不填不修改)
+					    </label>
+					    <div class="col-sm-10">
+					      <input type="password" name="password" datatype="*6-20" ignore="ignore" nullmsg="请填写登录密码" errormsg="字数不能少于6个超过20个字" class="form-control" placeholder="">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">
+					    	重复登录密码
+					    </label>
+					    <div class="col-sm-10">
+					      <input type="password" name="repassword" datatype="*0-20" recheck="password" errormsg="两次密码输入不一致" class="form-control" placeholder="">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      <button type="submit" class="btn btn-primary ajax-post is-validform" data-url="__SELF__" data-location="{:U('index')}" data-location-title="返回管理员列表">保存</button>
+					    </div>
+					  </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,73 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Advanced Tables -->
+			<div class="panel panel-default">
+				<div class="panel-heading">{$other_action}</div>
+				<form>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="40">排序</th>
+										<th width="50">ID</th>
+										<th width="10%">管理组名</th>
+										<th width="50%">简介</th>
+										<th>是否禁用</th>
+										<th width="15%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+									<tr>
+										<td><input type="text" class="form-control input-sm" name="listorder[{$vo.id}]" value="{$vo.listorder}" style="width:40px;text-align:center;"></td>
+										<td>{$vo.id}</td>
+										<td>{$vo.title}</td>
+										<td>{$vo.description}</td>
+										<td>{$vo['status'] == 1 ? '否' : '<span style="color:#ccc;">是</span>'}</td>
+										<td>
+											<if condition="$vo['id'] eq 1">
+											&nbsp;&nbsp;不可操作
+											<else/>
+											<a href="{:U('groupUpdate',array('id'=>$vo['id']))}">编辑</a>
+											<a href="" class="ajax-get" data-url="{:U('groupDelete',array('id'=>$vo['id']))}" data-confirm="确定要删除这个管理组吗，删除后此管理组下的管理员将不能使用" data-location="reload">删除</a>
+											</if>
+										</td>
+									</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-heading">
+						<a href="" class="btn btn-primary btn-xs ajax-post" data-url="{:U('')}" data-location="reload" data-modal="false">排序</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$('td.status').each(function(i,v){
+		if(parseInt($.trim($(v).attr('data-status')))==1){
+			$(v).html('<a class="ajax-get" data-url="{:U('',array('type'=>'change_status'))}?id='+$(v).attr('data-id')+'" data-location="reload" href="">否</a>');
+		}else{
+			$(v).html('<a class="ajax-get" data-url="{:U('',array('type'=>'change_status'))}?id='+$(v).attr('data-id')+'" data-location="reload" href="" style="color:#ccc;">是</a>');
+		}
+	})
+	$('td.is_show').each(function(i,v){
+		if(parseInt($.trim($(v).attr('data-is-show')))==1){
+			$(v).html('<a class="ajax-get" data-url="{:U('',array('type'=>'change_is_show'))}?id='+$(v).attr('data-id')+'" data-location="reload" href="">显示</a>');
+		}else{
+			$(v).html('<a class="ajax-get" data-url="{:U('',array('type'=>'change_is_show'))}?id='+$(v).attr('data-id')+'" data-location="reload" href="" style="color: #ccc;">隐藏</a>');
+		}
+	})
+})
+</script>

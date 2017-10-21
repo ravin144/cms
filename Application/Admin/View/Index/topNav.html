@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<title>后台管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <meta name=”renderer”content="e-comp">
+    <![endif]-->  
+  </head>
+	
+  <body>
+  	<!-- 顶部导航 -->
+  	<nav class="navbar navbar-default top-navbar">
+	  <div class="container-fluid">
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <a class="navbar-brand" href="">后台管理</a>
+	      <ul class="nav navbar-nav">
+	      	<foreach name="top_nav" item="vo">
+	      		<li><a href="{:U('sideBar',array('pid'=>$vo['id'],'rule_name'=>$vo['name']))}" target="sidebar">{$vo.title}</a></li>
+	      	</foreach>
+	      </ul>
+	      <div class="user_box">
+	      	<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Welcome {$Think.session.admin.user_name}&nbsp;&nbsp;[{$Think.session.admin.group_name}]&nbsp;&nbsp;
+	      	<a href="{:U('AdminUser/saveInfo')}" target="main" class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="left" title="修改个人资料"></a>
+	      	<a href="__ROOT__/" target="_blank" class="glyphicon glyphicon-home" data-toggle="tooltip" data-placement="left" title="去首页"></a>
+	      	<a target="_top" href="{:U('Public/logOut')}" class="login_out glyphicon glyphicon-off" data-toggle="tooltip" data-placement="left" title="退出系统"></a>
+	      </div>
+	    </div>
+	  </div>
+	</nav>
+	<script type="text/javascript">
+	$(function(){
+		$('nav ul li:eq(0)').addClass('active')
+		$('nav ul li a').click(function(){
+			$('nav ul li').removeClass('active');
+			$(this).parent().addClass('active')
+		})
+		$('.login_out').click(function(){
+			if(!confirm('确定要退出吗?')){
+				return false;
+			}
+		})
+		if($('[data-toggle="tooltip"]').length){
+			$('[data-toggle="tooltip"]').tooltip()
+		}
+	})
+	</script>
+</body>
+</html>

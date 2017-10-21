@@ -1,0 +1,51 @@
+	<div id="main">
+		<ol class="breadcrumb">
+		  <li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+		</ol>
+		
+		<div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                         {$other_action}
+                    </div>
+                    <div class="panel-body">
+                    	<form class="form-horizontal">
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	模型名称
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="model_name" value="{$data.model_name}" datatype="*2-15" nullmsg="请填写模型名称" errormsg="模型名称不能小于2位大于15位" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						  	<label class="col-sm-2 control-label">
+						  		<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="模型表名统一小写字母，必须以小写字母开头和小写字母或数字结尾，中间可以是小写字母+_下划线组成，例如:news，最终会生成:dc_content_article_news的数据表"></span>
+						    	模型表名
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="table_name" value="{$data.table_name}" datatype="/^[a-z][a-z0-9_]*[a-z0-9]$/" nullmsg="请填写模型表名" errormsg="表名格式不正确" class="form-control" placeholder=""/>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="选填，对模型进行简短描述，比如哪个栏目需要用此模型等"></span>
+						    	模型描述
+						    </label>
+						    <div class="col-sm-10">
+						      <textarea name="model_description" class="form-control">{$data.model_description}</textarea>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary ajax-post is-validform" data-url="__SELF__" data-location="{:U('index')}" data-location-title="返回模型列表">保存</button>
+						    </div>
+						  </div>
+						</form>
+                    </div>
+                 </div>
+              </div>
+         </div>
+	</div>

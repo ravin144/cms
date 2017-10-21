@@ -1,0 +1,70 @@
+<div id="main">
+    <ol class="breadcrumb">
+        <li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+    </ol>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- {$other_action} -->
+                    <a href="{:U('Article/arcList', array('id' => $_GET['cid']))}" class="btn btn-primary btn-xs btn_add">文章列表</a>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#menu1" data-toggle="tab">文章内容</a></li>
+                            <li><a href="#menu2" data-toggle="tab">其他设置</a></li>
+                        </ul>
+                        <div class="tab-content">
+                    	    <div id="menu1" class="tab-pane fade in active">
+                                {$tpls}
+                    	    </div>
+                    	    <div id="menu2" class="tab-pane fade">
+                    	        <div class="form-group">
+                                    <label class="col-sm-2 control-label"> SEO标题</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="seo_title" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> SEO关键字</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="seo_keyword" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> SEO描述</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="seo_description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">
+                                        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="如果填写链接地址，请加上http://的完整链接；为空则为默认链接"></span> 文章链接
+                                    </label>
+                                    <div class="col-sm-10 url-input">
+                                        <input type="text" name="url" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">
+                                        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="为空则为当前时间"></span> 提交时间
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="add_time" class="form-control date-select">
+                                    </div>
+                                </div>
+                    	    </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary ajax-post is-validform" data-url="{:U('add', array('cid' => $_GET['cid']))}" data-location="{:U('Article/arcList', array('id' => $_GET['cid']))}" data-location-title="返回文章列表">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

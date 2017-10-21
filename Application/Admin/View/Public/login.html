@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>后台管理登陆</title><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+<style type="text/css">
+html, body {    width: 100%;    height: 100%;}
+body {	background-color:#f6f6f6;    padding: 0;}
+#logo, #loginbox {    width: 480px;    margin-left: auto;    margin-right: auto;    position: relative;}
+#logo img {    width: 215px;    margin: 0 auto;    display: block;}
+#loginbox {	position:fixed;border:3px solid transparent; overflow: hidden !important;   text-align: left;		-moz-border-image:url(__PUBLIC__/admin/images/css-border-bg.jpg) 3 3 round; /* Old Firefox */	-webkit-border-image:url(__PUBLIC__/admin/images/css-border-bg.jpg) 3 3 round; /* Safari */	-o-border-image:url(__PUBLIC__/admin/images/css-border-bg.jpg) 3 3 round; /* Opera */	border-image:url(__PUBLIC__/admin/images/css-border-bg.jpg) 3 3 round; box-shadow:8px 10px 20px #b6b6b6;  }
+#loginbox form{	width:100%; background:#fff;	position:relative;	top:0;	left:0; }
+#loginbox .form-actions {	padding: 14px 20px 15px;}
+#loginbox .form-actions .pull-left { margin-top:0px;}
+#loginbox form#loginform {	z-index: 200; display:block;}
+#loginbox form#recoverform {	z-index: 100;	    display:none;}
+#loginbox form#recoverform .form-actions {    margin-top: 27px;}
+#loginbox .main_input_box { margin:0 auto; text-align:center}
+#loginbox .main_input_box .add-on{display:none;  background-color: #EEEEEE;    border: 1px dashed #dadada;      font-size: 14px;    font-weight: normal;    height:30px;    line-height: 30px;    min-width: 16px;    padding: 4px 5px;     text-align: center;    text-shadow: 0 1px 0 #FFFFFF;    width:30px;}
+#loginbox .main_input_box input{ height:30px; display:inline-block; width:75%;  border: 1px dashed #dadada; margin-bottom:3px;}
+#loginbox .controls{ padding:0 20px;}
+#loginbox .control-group{ padding:20px 0; border-bottom:1px solid #dadada; margin-bottom:0px;}
+.form-vertical, .form-actions {    margin-bottom: 0;}
+#loginbox .normal_text{ padding:15px 10px; text-align:center; font-size:14px; line-height:20px; }
+.error_msg{position:absolute;left:0;bottom:-8px;width:100%;color:red;display:none;}
+</style>
+</head>
+  <body>
+      <div id="loginbox" style="display:none;">            
+          <form id="loginform" class="form-vertical" action="index.html">
+		 <div class="control-group normal_text" style="position:relative;">
+		 	<h3>后台管理登陆</h3>
+		 	<p class="error_msg">密码错误</p>
+		 </div>
+		 	  
+              <div class="control-group">
+                  <div class="controls">
+                      <div class="main_input_box">
+                          <span class="add-on"><i class="icon-user"></i></span><input type="text" name="user_name" placeholder="用户名" />
+                      </div>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <div class="controls">
+                      <div class="main_input_box">
+                          <span class="add-on"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="密码" />
+                      </div>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <div class="controls">
+                      <div class="main_input_box">
+                          <span class="add-on"><i class="icon-lock"></i></span><input type="text" name="code" placeholder="验证码" style="width:175px;"/><img id="code" src="{:U('Public/verify',array('imageW'=>150,'imageH'=>30,'fontSize'=>16))}" onclick="this.src='{:U('Public/verify',array('imageW'=>150,'imageH'=>30,'fontSize'=>16))}?'+Math.random()"/>
+                      </div>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <div class="controls">
+                      <div class="main_input_box">
+                          <input type="submit" class="btn btn-success login-btn" value="登陆" />
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      
+      <script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script> 
+      <script type="text/javascript">
+      $(function(){
+    	  function align_center($obj){
+    		  var top=($(window).height()-$obj.height())/2,left=($(window).width()-$obj.width())/2;
+    		  $obj.css({'top':top,'left':left});
+    	  }
+    	  align_center($('#loginbox'));
+    	  $('#loginbox').fadeIn();
+    	  $(window).resize(function(){
+    		  align_center($('#loginbox'));
+    	  })
+    	  var timeOut='';
+    	  $('.login-btn').click(function(){
+    		  var data={
+    				  'user_name':$.trim($('input[name=user_name]').val()),
+    				  'password':$.trim($('input[name=password]').val()),
+    				  'code':$.trim($('input[name=code]').val())
+    		  }
+    		  $.ajax({
+    			  url:'__SELF__',
+    			  type:'post',
+    			  data:data,
+    			  dataType:'json',
+    			  success:function(result){
+    				  if(result.status){
+    					  window.location.href="{:U('Index/index')}";
+    				  }else{
+    					  $('input[name=code]').val('');
+    					  $('#code').attr('src','{:U('Public/verify',array('imageW'=>150,'imageH'=>30,'fontSize'=>14))}?'+Math.random())
+    					  $('.error_msg').html(result.msg).show();
+    					  clearTimeout(timeOut);
+    					  timeOut=setTimeout(function(){
+    						  $('.error_msg').hide();
+    					  },3000);
+    				  }
+    			  }
+    		  })
+    		  return false;
+    	  })
+      })
+      </script>
+  </body>
+</html>

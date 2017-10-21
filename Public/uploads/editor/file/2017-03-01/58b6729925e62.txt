@@ -1,0 +1,13 @@
+do-can美国阿里云
+47.88.20.204
+root
+L1308804128hc
+
+wdcp
+http://47.88.20.204:8080/
+账号：admin
+密码：k4Z4i2iLWqG2S88
+
+mysql
+用户名:root 
+密码: x106tKM5O75049g

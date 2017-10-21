@@ -1,0 +1,69 @@
+
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+	</ol>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Advanced Tables -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					{$other_action}
+					&nbsp;&nbsp;<a href="{:U('fieldAdd',array('model_id'=>I('get.model_id')))}" class="btn btn-primary btn-xs">新增字段</a>
+				</div>
+				<form>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="40">排序</th>
+										<th width="150">字段别名</th>
+										<th width="80">字段名</th>
+										<th>表单字段类型</th>
+										<th>数据表字段类型</th>
+										<th>是否必填</th>
+										<th>是否唯一</th>
+										<th width="300">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+									<tr>
+										<td><input type="text" class="form-control input-sm" name="listorder[{$vo.id}]" value="{$vo.listorder}" style="width:40px;text-align:center;"></td>
+										<td>{$vo.field_title}</td>
+										<td>{$vo.field_name}</td>
+										<td>{$vo.input_title}</td>
+										<td>{$vo.field_type}{$vo['field_length']?'(':''}{$vo['field_length']?$vo['field_length']:''}{$vo['field_length']?')':''}</td>
+										<td>{$vo['is_must']?'<span style="color:red">是</span>':'否'}</td>
+										<td>{$vo['is_unique']?'<span style="color:red">是</span>':'否'}</td>
+										<td>
+											<a href="{:U('fieldUpdate',array('id'=>$vo['id']))}">编辑</a>
+											<if condition="$vo['is_disabled'] eq 1">
+											<a href="" class="ajax-get" data-url="{:U('fieldDisabled',array('id'=>$vo['id'],'is_disabled'=>'0'))}" data-location="reload" style="color:red;">启用</a>
+											<else/>
+											<a href="" class="ajax-get" data-url="{:U('fieldDisabled',array('id'=>$vo['id'],'is_disabled'=>'1'))}" data-location="reload" data-toggle="tooltip" data-placement="bottom" data-original-title="禁用后添加内容时将不在显示该字段">禁用</a>
+											</if>
+
+											<if condition="$vo['is_system'] eq 1">
+											<a href="javascript:void(0);" style="color:#ccc;" data-toggle="tooltip" data-placement="bottom" data-original-title="系统默认字段不可删除">删除</a>
+											<else/>
+											<a href="" class="ajax-get" data-url="{:U('fieldDelete',array('id'=>$vo['id']))}" data-confirm="确定要删除字段[{$vo.field_title}]吗？该字段所有数据也会被删除，不可恢复" data-location="reload">删除</a>
+											</if>
+										</td>
+									</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-heading">
+						<a href="" class="btn btn-primary btn-xs ajax-post" data-url="{:U('')}" data-location="reload" data-modal="false">排序</a>
+						共{:count($list)}条
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

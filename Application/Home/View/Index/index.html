@@ -1,0 +1,53 @@
+<div class="swiper-container indextopad" id="mySwiper">
+    <div class="swiper-wrapper">
+        <volist name=":get_cate_list(3)" id="vo" key="k">
+            <div class="swiper-slide"><img src="{$vo.img}" /></div>
+        </volist>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="index-main">
+    <volist name=":get_cate_list(5)" id="vo" key="k">
+        <dl class="io{$k}" data-am-scrollspy="{animation:'slide-top', delay: {$k*150}">
+            <dt>{$vo.title}</dt>
+            <dd>{$vo.desc}</dd>
+        </dl>
+    </volist>
+</div>
+<div class="index-data">
+    <div class="box">
+        <ul>
+            <volist name=":get_cate_list(6)" id="vo" key="k">
+                <li class="io1">
+                    <p class="dt">{$vo.desc}</p>
+                    <p>{$vo.title}</p>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<div class="index-news">
+    <div class="htitle">新闻</div>
+    <ul>
+        <volist name=":get_cate_list(2, 3)" id="vo" key="k">
+              <li><a href="{$vo.url}">
+              <img class="pic" src="{$vo.img}">
+              <dl>
+                 <dt>{$vo.title}</dt>
+                 <dd class="info">{$vo.desc}</dd>
+                 <dd class="time">{$vo.add_time|date="Y-m-d", ###}</dd>
+              </dl>
+            </a></li>
+        </volist>
+    </ul>
+</div>
+<div class="index-cooperation">
+    <div class="box">
+        <div class="htitle">合作伙伴</div>
+        <ul class="am-avg-sm-1 am-avg-md-2 am-avg-lg-4">
+            <volist name=":get_cate_list(4)" id="vo" key="k">
+                <li class="io1"><i style="background-image: url({$vo.img});"></i></li>
+            </volist>
+        </ul>
+    </div>
+</div>

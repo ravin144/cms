@@ -1,0 +1,291 @@
+<div id="main">
+	<ol class="breadcrumb">
+		<li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li>后台首页</li>
+	</ol>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">系统信息</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover">
+							<tbody>
+								<tr>
+									<td width="10%">系统框架：</td>
+									<td>thinkPHP</td>
+								</tr>
+								<tr>
+									<td width="10%">框架版本：</td>
+									<td>{$Think.version}</td>
+								</tr>
+								<tr>
+									<td width="10%">php版本：</td>
+									<td>{:phpversion()}</td>
+								</tr>
+								<tr>
+									<td width="12%">系统类型/php运行方式：</td>
+									<td>{:php_uname('s')}/{:php_sapi_name()}</td>
+								</tr>
+								<tr>
+									<td width="10%">上次登录时间：</td>
+									<td>{:date('Y-m-d H:i:s',session('admin.last_login_time'))}</td>
+								</tr>
+								<tr>
+									<td width="10%">上次登录ip：</td>
+									<td>{:session('admin.last_login_ip')}</td>
+								</tr>
+								<tr>
+									<td width="10%">登录次数：</td>
+									<td>{:session('admin.login_count')}次</td>
+								</tr>
+								<tr>
+									<td width="10%">系统最大上传大小：</td>
+									<td>{:ini_get('upload_max_filesize')}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- display:none -->
+	<div class="row" style="display:;">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					新闻列表
+					<a href="" class="btn btn-primary btn-xs">添加新闻</a>
+					<a href="" class="btn btn-primary btn-xs">导出Excel</a>
+					<div class="table-filter">
+						<form class="form-inline">
+							<input type="text" class="form-control input-sm date-select" placeholder="开始时间">
+							<input type="text" class="form-control input-sm date-select" placeholder="结束时间">
+							<input type="text" class="form-control input-sm" placeholder="关键词">
+							<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span>搜索</button>
+						</form>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="center" width="30"><input type="checkbox" class="select-all"/></th>
+									<th width="40">排序</th>
+									<th width="50">ID</th>
+									<th width="35%">标题</th>
+									<th>所属栏目</th>
+									<th>添加时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="">
+									<td><input type="checkbox" class="select-self"/></td>
+									<td><input type="text" class="form-control input-sm"/></td>
+									<td>1</td>
+									<td>开疆沃土 剑指天山——德沃微商新疆崛起之路！</td>
+									<td>中国新闻</td>
+									<td>2015-12-25</td>
+									<td class="center">4</td>
+								</tr>
+								<tr class="">
+									<td><input type="checkbox" class="select-self"/></td>
+									<td><input type="text" class="form-control input-sm"/></td>
+									<td>2</td>
+									<td>开疆沃土 剑指天山——德沃微商新疆崛起之路！</td>
+									<td>中国新闻</td>
+									<td>2015-12-25</td>
+									<td class="center">4</td>
+								</tr>
+								<tr class="">
+									<td><input type="checkbox" class="select-self"/></td>
+									<td><input type="text" class="form-control input-sm"/></td>
+									<td>3</td>
+									<td>开疆沃土 剑指天山——德沃微商新疆崛起之路！</td>
+									<td>中国新闻</td>
+									<td>2015-12-25</td>
+									<td class="center">4</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<a href="" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="" data-original-title="放到回收站">回收</a>
+					<a href="" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="" data-original-title="移动到其他栏目">移动</a>
+					<a href="" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="" data-original-title="推送到其他栏目,相当于复制">推送</a>
+					共100条，每页15条
+					<ul class="pagination pagination-sm">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--End Advanced Tables -->
+		</div>
+	</div>
+
+	<div class="row" style="display:;">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					添加新闻
+					<a href="" class="btn btn-primary btn-xs">新闻列表</a>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">标题</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">描述</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="3" placeholder=""></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">所属栏目</label>
+							<div class="col-sm-10">
+								<select class="form-control">
+									<option>栏目1</option>
+									<option>栏目1</option>
+									<option>栏目1</option>
+									<option>栏目1</option>
+									<option>栏目1</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">缩略图</label>
+							<div class="col-sm-10 thumbnails">
+								<div class="row thumbnails-list">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd1c328.jpg" alt="576375170d51d.jpg">
+								</div>
+								<div class="row">
+									<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="" data-title-name="thumb_title" data-name="thumb" data-max-upload="1">上传</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">图册</label>
+							<div class="col-sm-10 thumbnails">
+								<div class="row thumbnails-list">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd4b500.jpg" alt="5770f0bd4b500">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd458a0.jpg" alt="5770f0bd458a0">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd3fdc4.jpg" alt="5770f0bd3fdc4">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd3959a.jpg" alt="5770f0bd3959a">
+									<img src="/Public/uploads/editor/image/2016-06-27/5770f0bd32474.jpg" alt="5770f0bd32474">
+								</div>
+								<div class="row">
+									<a class="btn btn-default upload-img" data-auto-create="1" data-aspect-ratio="1.5" data-title-name="imglist_title[]" data-name="imglist[]" data-max-upload="5">上传</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">内容</label>
+							<div class="col-sm-10">
+								<script id="editor" type="text/plain" name="" style="max-width:960px;height:500px;"></script>
+								<script>
+									$(function(){
+										var ue = UE.getEditor('editor');
+									});
+								</script>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">文件上传</label>
+							<div class="col-sm-10 files">
+								<input type="text" value="/Public/uploads/editor/image/2016-06-17/576375170d51d.jpg" title="2016-06-17/576375170d51d.jpg"/>
+								<input type="text" value="/Public/uploads/editor/image/2016-06-17/576375170d51d.jpg" title="2016-06-17/576375170d51d.jpg"/>
+								<input type="text" value="/Public/uploads/editor/image/2016-06-17/576375170d51d.jpg" title="2016-06-17/576375170d51d.jpg"/>
+								<input type="text" value="/Public/uploads/editor/image/2016-06-17/576375170d51d.jpg" title="2016-06-17/576375170d51d.jpg"/>
+								<a class="btn btn-default upload-file" data-auto-create="1" data-title-name="file_title" data-name="file" data-max-upload="5">上传</a>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">是否显示</label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									<input type="radio" value="option1"> 是
+								</label>
+								<label class="radio-inline">
+									<input type="radio" value="option2"> 否
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">推荐位</label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									<input type="radio" value="option1"> 首页推荐
+								</label>
+								<label class="radio-inline">
+									<input type="radio" value="option2"> 列表页推荐
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox"> 这个是不用标题的选项
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary">保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="display:;">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					新闻列表
+					<a href="" class="btn btn-primary btn-xs">添加新闻</a>
+					<a href="" class="btn btn-primary btn-xs">导出Excel</a>
+					<div class="table-filter">
+						<form class="form-inline">
+							<input type="text" class="form-control input-sm date-select" placeholder="开始时间">
+							<input type="text" class="form-control input-sm date-select" placeholder="结束时间">
+							<input type="text" class="form-control input-sm" placeholder="关键词">
+							<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span>搜索</button>
+						</form>
+					</div>
+				</div>
+				<div class="panel-body">
+				</div>
+				<div class="panel-heading">
+					<a href="" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="" data-original-title="删除后后台权限可能会有问题，请慎重删除!">删除</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

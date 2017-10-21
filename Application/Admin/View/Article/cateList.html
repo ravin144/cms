@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>单页管理-栏目列表</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+	<link rel="stylesheet" href="__PUBLIC__/statics/tree/dist/themes/default/style.css">
+	<script type="text/javascript" src="__PUBLIC__/statics/tree/dist/jstree.min.js"></script>
+</head>
+	<body>
+		<div id="frmt"></div>
+	</body>
+	<script>
+		$('#frmt').jstree({
+			'core' : {
+				'data' : {$tree}
+			}
+		});
+		$(function(){
+			$(document).on('click', '#frmt a', function(){
+				var id = parseInt($(this).attr('id'));
+				$(window.parent.document.getElementById("list")).attr('src', "{:U('arcList')}?id=" + id);
+			});
+		});
+	</script>
+</html>

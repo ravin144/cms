@@ -1,0 +1,38 @@
+
+    <div class="common-box class-box">
+        <div class="tool">
+            <!-- <div class="type-txt">
+                <div class="tit">垃圾类别：</div>
+                <ul>
+                	<volist name=":subcat($parentid)" id="vo" key="k">
+                    	<li class="<?php if($vo['id'] == $catid) echo 'hover'; ?>"><a href="{$vo.url}">{$vo.catname}</a></li>
+                	</volist>
+                </ul>
+            </div> -->
+            <form class="search-box" action="{:U('Index/search')}">
+                <input type="text" placeholder="攻略搜索" name="keyword" />
+                <input type="hidden" name="table_name" value="content_article_class" />
+                <input type="text" name="page_num" value="12" />
+                <input type="text" name="tpl" value="searclass" />
+                <input type="submit" class="but" value="" />
+            </form>
+        </div>
+        <ul class="class-list am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
+            <empty name="list">
+                <h3 style="text-align: center;margin:18vh auto;font-size:24px;">暂无搜索结果</h3>
+            </empty>
+            <volist name="list" id="vo" key="k">
+	            <li><a href="{$vo.url}">
+			    <span class="pic" style="background-image:url({$vo.img})"></span>
+			    <p class="dt">{$vo.title}</p>
+                <php>$info = get_cate_info($vo['cid']);</php>
+			    <p class="dd">{$info.name}</p>
+			    <p class="info">{$vo.desc}</p>
+			  </a></li>
+            </volist>
+        </ul>
+        <notempty name="list">
+            {$page}
+        </notempty>
+    </div>
+

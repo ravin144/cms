@@ -1,0 +1,8 @@
+
+<php>
+	$child_cat = explode(',', $cates['childs_id']);
+	$url = M('category')->where('id = ' . $child_cat[1])->getField('url');
+	if($url) {
+		header('Location:' . $url);
+	}
+</php>

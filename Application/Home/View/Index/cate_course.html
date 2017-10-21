@@ -1,0 +1,18 @@
+<div class="common-box course-box">
+    <ul class="course-list">
+        <volist name=":get_cate_list($cid)" id="vo" key="k">
+        	<li class="<?php if($k%2 == 0) echo 'tyle'; ?>"><i></i>
+        	    <div class="pictime">
+        	        <time><span>{$vo.add_time|date="m-d", ###}</span>{$vo.addt_ime|date="Y", ###}</time>
+        	        <img src="{$vo.img}" />
+        	    </div>
+        	    <dl>
+        	        <dt>{$vo.title}</dt>
+        	        <dd>
+        	            {$vo.longdesc|htmlspecialchars_decode}
+        	        </dd>
+        	    </dl>
+        	</li>
+        </volist>
+    </ul>
+</div>

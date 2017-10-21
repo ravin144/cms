@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  	<title>后台管理-侧边栏</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="__PUBLIC__/statics/js/jQuery.v1.11.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/statics/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/statics/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <meta name=”renderer”content="e-comp">
+    <![endif]-->
+  </head>
+	
+  <body>
+	<!-- 左侧导航 -->
+	<div class="col-sm-2 col-md-2 sidebar">
+	  <div class="panel-group" role="tablist">
+	  	<foreach name="sidebar_nav" item="vo" key="k">
+	  	<div class="panel panel-default">
+	      <div class="panel-heading" role="tab" id="collapseListGroupHeading{$k}">
+	        <h4 class="panel-title">
+	          <a class="collapsed" role="button" data-toggle="collapse" href="#collapseListGroup{$k}" aria-expanded="false" aria-controls="collapseListGroup{$k}">
+	            {$vo.title}
+	          </a>
+	        </h4>
+	        <span class="caret"></span>
+	      </div>
+	      <div id="collapseListGroup{$k}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading{$k}">
+	        <ul class="list-group">
+	          <foreach name="vo.child_nav" item="vovo">
+	          <li class="list-group-item"><a href="{:U($vovo['name'])}" target="main">{$vovo.title}</a></li>
+	          </foreach>
+	        </ul>
+	      </div>
+	    </div>
+	  	</foreach>
+	  </div>
+	  <script>
+	  $(function(){
+		$('.collapse').collapse();
+		$('.sidebar').addClass('in');
+		$('.sidebar a.item-li').click(function(){
+			$('.sidebar a.item-li').removeClass('on');
+			$(this).addClass('on')
+		})
+	  })
+	  </script>
+	</div>
+  </body>
+</html>

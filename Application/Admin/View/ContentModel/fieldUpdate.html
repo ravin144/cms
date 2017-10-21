@@ -1,0 +1,211 @@
+	<div id="main">
+		<ol class="breadcrumb">
+		  <li><a href="{:U('Index/main')}"><span class="glyphicon glyphicon-home"></span></a></li>{$breadcrumb}
+		</ol>
+
+		<div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                         {$other_action}
+                         &nbsp;&nbsp;<a href="{:U('field',array('model_id'=>$data['model_id']))}" class="btn btn-primary btn-xs">字段列表</a>
+                    </div>
+                    <div class="panel-body">
+                    	<form class="form-horizontal">
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="字段名数据表的字段名，统一小写:英文+数字或英文或下划线，比如:seo_title 表示seo标题"></span>
+						    	字段名
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="field_name" value="{$data.field_name}" {$data['is_system'] == 1?'disabled':''} datatype="/^[a-z][a-z0-9_]*[a-z0-9]$/" nullmsg="请填写字段名称" errormsg="字段名称格式不正确" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						  	<label class="col-sm-2 control-label">
+						  		<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="字段标题主要用于添加内容时的描述,比如此处的:'文章标题'"></span>
+						    	字段别名
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="field_title" value="{$data.field_title}" datatype="*1-30" nullmsg="请填写字段标题" errormsg="字段标题1-30位" class="form-control" placeholder=""/>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						  	<label class="col-sm-2 control-label">
+						  		<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="比如是单选，多选，单行输入框还是多行输入框等"></span>
+						    	字段表单类型
+						    </label>
+						    <div class="col-sm-10">
+						      <select name="input_type" class="form-control" {$data['is_system'] == 1?'disabled':''}>
+						      	<!-- option 的data-value-type标示选中此选项后数据表字段类型默认选中值，data-length标示默认长度，空长度禁用 -->
+						      	<foreach name="field_type" item="vo" key="k">
+						      	<option value="{$k}" {$data['input_type'] == $k ? 'selected' : ''} data-value-type="{$vo.value_type}" data-length="{$vo.value_length}">{$vo.input_title}</option>
+						      	</foreach>
+						      </select>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						  	<label class="col-sm-2 control-label">
+						  		<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="添加数据表字段时的字段类型，若不知道则无需选择和填写,时间日期等请选择INT类型"></span>
+						    	数据表字段类型
+						    </label>
+						    <div class="col-sm-10">
+						    	<div class="col-sm-1" style="margin: 0;padding: 0;">
+						    		 <select name="field_type" data-selected="{$data.field_type}" class="form-control" {$data['is_system'] == 1?'disabled':''}>
+						    		 	<!-- length-disabled标示长度是否不需要即禁用，比如text时不需要长度 -->
+								      	<option value="VARCHAR" default-length="250">VARCHAR</option>
+								      	<option value="CHAR" default-length="80">CHAR</option>
+								      	<option value="INT" default-length="11">INT</option>
+								      	<option value="SMALLINT" default-length="6">SMALLINT</option>
+								      	<option value="TINYINT" default-length="4">TINYINT</option>
+								      	<option value="FLOAT" default-length="0">FLOAT</option>
+								      	<option value="TEXT" default-length="0">TEXT</option>
+								      	<option value="TINYTEXT" default-length="0">TINYTEXT</option>
+								      	<option value="LONGTEXT" default-length="0">LONGTEXT</option>
+								      	<option value="DATE" default-length="0">DATE</option>
+								      	<option value="TIME" default-length="0">TIME</option>
+								      	<option value="DATETIME" default-length="0">DATETIME</option>
+								      	<option value="YEAR" default-length="0">YEAR</option>
+								     </select>
+						    	</div>
+						    	<div class="col-sm-4">
+						    		<input type="text" name="field_length" {$data['is_system'] == 1?'disabled':''} value="{$data.field_length}" class="form-control" placeholder="长度" value="250"/>
+						    	</div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="单选或多选时有用，每行一对，选项值和选项名用|分割，比如:1|男"></span>
+						    	选项
+						    </label>
+						    <div class="col-sm-10">
+						      <textarea name="field_options" class="form-control">{$data.field_options}</textarea>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="如果字段表单类型是单选或多选，默认值用选项值，多选多个时用|分割,比如性别默认男选项值:1|男:此处填写1即可"></span>
+						    	默认值
+						    </label>
+						    <div class="col-sm-10">
+						      <input type="text" name="default_value" value="{$data.default_value}" class="form-control" datatype="*1-300" ignore="ignore" errormsg="默认在0-300个字符之间"/>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="同现在鼠标经过！叹号时的效果一样"></span>
+						    	字段提示
+						    </label>
+						    <div class="col-sm-10">
+						      <textarea name="field_tip" class="form-control" datatype="*1-300" ignore="ignore" errormsg="字段提示在0-300个字符之间">{$data.field_tip}</textarea>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="是否唯一，如果是则会添加UNIQUE唯一键索引"></span>
+						    	唯一值
+						    </label>
+						    <div class="col-sm-10">
+						      	<label class="radio-inline">
+								  <input type="radio" name="is_unique" value="1" {$data['is_unique'] == 1 ? 'checked' : ''}> 是
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="is_unique" value="0" {$data['is_unique'] == 0 ? 'checked' : ''}> 否
+								</label>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="是否必填，如果是则该字段必须填写"></span>
+						    	必填
+						    </label>
+						    <div class="col-sm-10">
+						      	<label class="radio-inline">
+								  <input type="radio" name="is_must" value="1" {$data['is_unique'] == 1 ? 'checked' : ''}> 是
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="is_must" value="0" {$data['is_unique'] == 0 ? 'checked' : ''}> 否
+								</label>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="系统将判断所填值是否匹配该正则，如果不匹配则提示错误信息，不需验证留空即可"></span>
+						    	正则匹配
+						    </label>
+						    <div class="col-sm-10">
+						      	<div class="col-sm-1" style="margin: 0;padding: 0;">
+						      		<select name="system_params" class="form-control">
+						      			<option value="">自定义正则</option>
+						      			<option value="/^[0-9.-]+$/">数字</option>
+										<option value="/^[0-9-]+$/">整数</option>
+										<option value="/^[a-z]+$/i">字母</option>
+										<option value="/^[0-9a-z]+$/i">数字+字母</option>
+										<option value="/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/">E-mail</option>
+										<option value="/^[0-9]{5,20}$/">QQ</option>
+										<option value="/^http:\/\//">超级链接</option>
+										<option value="/^(1)[0-9]{10}$/">手机号码</option>
+										<option value="/^[0-9-]{6,13}$/">电话号码</option>
+										<option value="/^[0-9]{6}$/">邮政编码</option>
+						      		</select>
+						      	</div>
+						      	<div class="col-sm-4">
+						      		<input type="text" class="form-control" name="preg_params" value="{$data.preg_params}"/>
+						      	</div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">
+						    	<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" data-original-title="包含唯一值，是否必填，正则匹配错误的提示信息"></span>
+						    	错误提示信息
+						    </label>
+						    <div class="col-sm-10">
+						      <textarea name="error_msg" class="form-control" datatype="*1-300" ignore="ignore" errormsg="字段提示在0-300个字符之间">{$data.error_msg}</textarea>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary ajax-post is-validform" data-url="__SELF__" data-location="{:U('field',array('model_id'=>$data['model_id']))}" data-location-title="返回字段列表">保存</button>
+						    </div>
+						  </div>
+						</form>
+                    </div>
+                 </div>
+              </div>
+         </div>
+	</div>
+	<script>
+	$(function(){
+		//字段类型和正则默认选中项
+		$('select[name=system_params]').val($('input[name=preg_params]').val());
+		$('select[name=field_type]').val($('select[name=field_type]').attr('data-selected'));
+
+		$('select[name=input_type]').change(function(){
+			var value = $(this).val();
+			var data_value_type = $(this).find('option[value='+value+']').attr('data-value-type');
+			var data_length = $(this).find('option[value='+value+']').attr('data-length');
+			$('select[name=field_type]').val(data_value_type);
+			if(data_length != ''){
+				$('input[name=field_length]').prop('disabled', false).val(data_length);
+			} else {
+				$('input[name=field_length]').val('').prop('disabled', true);
+			}
+		})
+
+		$('select[name=field_type]').change(function(){
+			var value = $(this).val();
+			var default_length = $(this).find('option[value='+value+']').attr('default-length');
+			if(parseInt(default_length) > 0){
+				$('input[name=field_length]').prop('disabled', false).val(default_length);
+			} else {
+				$('input[name=field_length]').val('').prop('disabled', true);
+			}
+		})
+
+		$('select[name=system_params]').change(function(){
+			var value = $(this).val();
+			$('input[name=preg_params]').val(value);
+		})
+	})
+	</script>
